@@ -60,4 +60,17 @@ Order.prototype.cancel = function cancel(id, params) {
     .then(body => body[this.key]);
 };
 
+/**
+ * Gets order metafields.
+ *
+ * @param {Number} id Order ID
+ * @return {Promise} Promise that resolves with the result
+ * @public
+ */
+Order.prototype.metafields = function metafields(id) {
+  const url = this.buildUrl(`${id}/metafields`);
+  return this.shopify.request(url, 'GET', undefined, {})
+    .then(body => body);
+};
+
 module.exports = Order;
